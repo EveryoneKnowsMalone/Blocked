@@ -263,6 +263,12 @@
       margin-bottom: 1.2rem;
       text-align: center;
     }
+    /* Mobile button fix */
+    button, .menu-btn, .character-action-btn, #music-player button {
+      z-index: 2000;
+      position: relative;
+      touch-action: manipulation;
+    }
   </style>
 </head>
 <body>
@@ -524,7 +530,7 @@
 
     function addOverlayTapHandlers() {
       document.getElementById('intro').addEventListener('touchstart', function(e) {
-        e.preventDefault();
+        // e.preventDefault(); // Don't block button events!
         e.stopPropagation();
         if (!gameStarted && !inMenu) hideIntro();
       });
@@ -533,7 +539,7 @@
         if (!gameStarted && !inMenu) hideIntro();
       });
       document.getElementById('menu').addEventListener('touchstart', function(e) {
-        e.preventDefault();
+        // e.preventDefault(); // Don't block button events!
         e.stopPropagation();
         if (e.target === this && inMenu) startGame();
       });
